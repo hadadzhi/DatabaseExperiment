@@ -9,12 +9,12 @@ import ru.cdfe.domain.repositories.ParentJPARepository;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 import static ru.cdfe.DatabaseExperimentApplication.DEFAULT_AGE;
 import static ru.cdfe.DatabaseExperimentApplication.MAX_CHILDREN;
-import static ru.cdfe.DatabaseExperimentApplication.rnd;
 
 @Service
 public class WriterJPA {
@@ -38,7 +38,7 @@ public class WriterJPA {
 		final List<ChildJPA> c = Stream
 			.generate(() -> UUID.randomUUID().toString())
 			.limit(MAX_CHILDREN)
-			.map(name -> new ChildJPA(name, rnd.nextInt(100)))
+			.map(name -> new ChildJPA(name, ThreadLocalRandom.current().nextInt(100)))
 			.collect(toList());
 		
 		// throws a JPA exception about child entity with orphan removal not being referenced by parent, bla bla bla, orphans are not removed anyway!111

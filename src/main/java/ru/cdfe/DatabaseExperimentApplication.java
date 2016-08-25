@@ -14,8 +14,8 @@ import ru.cdfe.domain.Parent;
 import ru.cdfe.domain.repositories.ParentRepository;
 
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -26,7 +26,6 @@ import static java.util.stream.Collectors.toList;
 public class DatabaseExperimentApplication {
 	public static final long MAX_CHILDREN = 10;
 	public static final int DEFAULT_AGE = 0;
-	public static final Random rnd = new Random();
 	public static final String INCONSISTENT_DATA_MESSAGE = "OMG, INCONSISTENT DATA!!!11";
 		
 	public static void main(String[] args) {
@@ -89,7 +88,7 @@ public class DatabaseExperimentApplication {
 		final List<Child> children = Stream
 			.generate(() -> UUID.randomUUID().toString())
 			.limit(MAX_CHILDREN)
-			.map(name -> new Child(name, rnd.nextInt(100)))
+			.map(name -> new Child(name, ThreadLocalRandom.current().nextInt(100)))
 			.collect(toList());
 		
 		p.setChildren(children);
