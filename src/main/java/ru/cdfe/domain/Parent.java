@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Document
@@ -16,7 +17,7 @@ public class Parent {
 	private ObjectId id;
 	
 	@Version
-	private long version;
+	private BigInteger version;
 	
 	@Indexed
 	private int maxChildAge;
