@@ -37,7 +37,7 @@ public class WriterJPA {
 	public void writeParentJPA(ParentJPA p) {
 		final List<ChildJPA> c = Stream
 			.generate(() -> UUID.randomUUID().toString())
-			.limit(MAX_CHILDREN)
+			.limit(ThreadLocalRandom.current().nextLong(MAX_CHILDREN + 1))
 			.map(name -> new ChildJPA(name, ThreadLocalRandom.current().nextInt(100)))
 			.collect(toList());
 		

@@ -87,7 +87,7 @@ public class DatabaseExperimentApplication {
 	private static void writeParent(Parent p) {
 		final List<Child> children = Stream
 			.generate(() -> UUID.randomUUID().toString())
-			.limit(MAX_CHILDREN)
+			.limit(ThreadLocalRandom.current().nextLong(MAX_CHILDREN + 1))
 			.map(name -> new Child(name, ThreadLocalRandom.current().nextInt(100)))
 			.collect(toList());
 		
