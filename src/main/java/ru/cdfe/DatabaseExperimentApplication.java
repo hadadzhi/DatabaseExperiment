@@ -45,7 +45,7 @@ public class DatabaseExperimentApplication {
 	public ApplicationRunner writer(ParentRepository parents) {
 		return args -> {
 			while (!Thread.currentThread().isInterrupted()) {
-				try (final Stream<Parent> stream = parents.streamAll()) {
+				try (Stream<Parent> stream = parents.streamAll()) {
 					stream.forEach(p -> {
 						writeParent(p);
 						parents.save(p);
@@ -60,7 +60,7 @@ public class DatabaseExperimentApplication {
 	public ApplicationRunner reader(ParentRepository parents) {
 		return args -> {
 			while (!Thread.currentThread().isInterrupted()) {
-				try (final Stream<Parent> stream = parents.streamAll()) {
+				try (Stream<Parent> stream = parents.streamAll()) {
 					stream.forEach(p -> {
 						if (p.getChildren().stream().mapToInt(Child::getAge).max().orElse(DEFAULT_AGE) != p.getMaxChildAge()) {
 							throw new RuntimeException(INCONSISTENT_DATA_MESSAGE);
