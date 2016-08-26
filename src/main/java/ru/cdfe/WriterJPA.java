@@ -50,7 +50,7 @@ public class WriterJPA {
 		} else {
 			p.setChildren(c);
 		}
-
+		
 		p.setMaxChildAge(c.stream().mapToInt(ChildJPA::getAge).max().orElse(DEFAULT_AGE));
 		
 //		children.save(c);
