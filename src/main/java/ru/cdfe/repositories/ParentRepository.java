@@ -1,4 +1,4 @@
-package ru.cdfe.domain.repositories;
+package ru.cdfe.repositories;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;

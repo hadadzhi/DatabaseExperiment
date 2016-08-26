@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import ru.cdfe.domain.Child;
 import ru.cdfe.domain.Parent;
-import ru.cdfe.domain.repositories.ParentRepository;
+import ru.cdfe.repositories.ParentRepository;
 
 import java.util.List;
 import java.util.UUID;

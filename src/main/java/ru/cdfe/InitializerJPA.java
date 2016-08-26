@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.cdfe.domain.ParentJPA;
-import ru.cdfe.domain.repositories.ParentJPARepository;
+import ru.cdfe.repositories.ParentJPARepository;
 
 import java.util.stream.IntStream;
 

@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.cdfe.domain.ChildJPA;
 import ru.cdfe.domain.ParentJPA;
-import ru.cdfe.domain.repositories.ParentJPARepository;
+import ru.cdfe.repositories.ParentJPARepository;
 
 import static ru.cdfe.DatabaseExperimentApplication.DEFAULT_AGE;
 import static ru.cdfe.DatabaseExperimentApplication.INCONSISTENT_DATA_MESSAGE;

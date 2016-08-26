@@ -1,4 +1,4 @@
-package ru.cdfe.domain.repositories;
+package ru.cdfe.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

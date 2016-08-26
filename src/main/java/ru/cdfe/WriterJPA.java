@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import ru.cdfe.domain.ChildJPA;
 import ru.cdfe.domain.ParentJPA;
-import ru.cdfe.domain.repositories.ParentJPARepository;
+import ru.cdfe.repositories.ParentJPARepository;
 
 import java.util.List;
 import java.util.UUID;

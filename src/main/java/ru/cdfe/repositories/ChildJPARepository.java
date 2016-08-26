@@ -1,3 +1,3 @@
-package ru.cdfe.domain.repositories;
+package ru.cdfe.repositories;
 
 //public interface ChildJPARepository extends JpaRepository<ChildJPA, Long> {}
