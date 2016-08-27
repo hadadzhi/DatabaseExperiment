@@ -24,10 +24,11 @@ import static java.util.stream.Collectors.toList;
 @Slf4j
 @SpringBootApplication
 public class DatabaseExperimentApplication {
+	public static final long MIN_CHILDREN = 10;
 	public static final long MAX_CHILDREN = 10;
 	public static final int DEFAULT_AGE = 0;
 	public static final String INCONSISTENT_DATA_MESSAGE = "OMG, INCONSISTENT DATA!!!11";
-		
+	   
 	public static void main(String[] args) {
 		SpringApplication.run(DatabaseExperimentApplication.class, args);
 	}
@@ -85,10 +86,11 @@ public class DatabaseExperimentApplication {
 	}
 	
 	private static void writeParent(Parent p) {
+		final ThreadLocalRandom rnd = ThreadLocalRandom.current();
 		final List<Child> children = Stream
 			.generate(() -> UUID.randomUUID().toString())
-			.limit(ThreadLocalRandom.current().nextLong(MAX_CHILDREN + 1))
-			.map(name -> new Child(name, ThreadLocalRandom.current().nextInt(100)))
+			.limit(rnd.nextLong(MIN_CHILDREN, MAX_CHILDREN + 1))
+			.map(name -> new Child(name, rnd.nextInt(100)))
 			.collect(toList());
 		
 		p.setChildren(children);

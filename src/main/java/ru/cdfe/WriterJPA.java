@@ -15,6 +15,7 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 import static ru.cdfe.DatabaseExperimentApplication.DEFAULT_AGE;
 import static ru.cdfe.DatabaseExperimentApplication.MAX_CHILDREN;
+import static ru.cdfe.DatabaseExperimentApplication.MIN_CHILDREN;
 
 @Service
 public class WriterJPA {
@@ -35,9 +36,10 @@ public class WriterJPA {
 	}
 	
 	public void writeParentJPA(ParentJPA p) {
+		final ThreadLocalRandom rnd = ThreadLocalRandom.current();
 		final List<ChildJPA> c = Stream
 			.generate(() -> UUID.randomUUID().toString())
-			.limit(ThreadLocalRandom.current().nextLong(MAX_CHILDREN + 1))
+			.limit(rnd.nextLong(MIN_CHILDREN, MAX_CHILDREN + 1))
 			.map(name -> new ChildJPA(name, ThreadLocalRandom.current().nextInt(100)))
 			.collect(toList());
 		

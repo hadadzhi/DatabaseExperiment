@@ -1,6 +1,7 @@
 package ru.cdfe.domain;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class ChildJPA {
 //	@Id
 //	@GeneratedValue
@@ -17,9 +19,4 @@ public class ChildJPA {
 	
 	private String name;
 	private int age;
-	
-	public ChildJPA(String name, int age) {
-		this.name = name;
-		this.age = age;
-	}
 }
