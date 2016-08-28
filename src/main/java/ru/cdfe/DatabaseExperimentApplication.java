@@ -28,11 +28,11 @@ public class DatabaseExperimentApplication {
 	public static final long MAX_CHILDREN = 10;
 	public static final int DEFAULT_AGE = 0;
 	public static final String INCONSISTENT_DATA_MESSAGE = "OMG, INCONSISTENT DATA!!!11";
-	   
+
 	public static void main(String[] args) {
 		SpringApplication.run(DatabaseExperimentApplication.class, args);
 	}
-	
+
 	@Bean
 	public MongoClientOptions mongoClientOptions() {
 		return MongoClientOptions.builder()
@@ -40,7 +40,7 @@ public class DatabaseExperimentApplication {
 			.writeConcern(WriteConcern.MAJORITY)
 			.build();
 	}
-	
+
 	@Bean
 	@Profile("writer")
 	public ApplicationRunner writer(ParentRepository parents) {
@@ -55,7 +55,7 @@ public class DatabaseExperimentApplication {
 			}
 		};
 	}
-	
+
 	@Bean
 	@Profile("reader")
 	public ApplicationRunner reader(ParentRepository parents) {
@@ -71,7 +71,7 @@ public class DatabaseExperimentApplication {
 			}
 		};
 	}
-	
+
 	@Bean
 	@Profile("init")
 	public ApplicationRunner initRunner(ParentRepository parents) {
@@ -84,7 +84,7 @@ public class DatabaseExperimentApplication {
 			});
 		};
 	}
-	
+
 	private static void writeParent(Parent p) {
 		final ThreadLocalRandom rnd = ThreadLocalRandom.current();
 		final List<Child> children = Stream
@@ -92,11 +92,11 @@ public class DatabaseExperimentApplication {
 			.limit(rnd.nextLong(MIN_CHILDREN, MAX_CHILDREN + 1))
 			.map(name -> new Child(name, rnd.nextInt(100)))
 			.collect(toList());
-		
+
 		p.setChildren(children);
 		p.setMaxChildAge(children.stream().mapToInt(Child::getAge).max().orElse(DEFAULT_AGE));
 	}
-	
+
 	@Bean
 	@Profile("writer_jpa")
 	public ApplicationRunner writerJPARunner(WriterJPA writer) {
@@ -106,7 +106,7 @@ public class DatabaseExperimentApplication {
 			}
 		};
 	}
-	
+
 	@Bean
 	@Profile("reader_jpa")
 	public ApplicationRunner readerJPARunner(ReaderJPA reader) {
@@ -116,7 +116,7 @@ public class DatabaseExperimentApplication {
 			}
 		};
 	}
-	
+
 	@Bean
 	@Profile("init_jpa")
 	public ApplicationRunner initJPARunner(InitializerJPA init) {
